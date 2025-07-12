@@ -113,4 +113,32 @@ class ProductController extends BaseController
         // output the generated pdf
         $dompdf->stream($filename);
     }
+
+    // method untuk detail prosuk
+    public function detail($id)
+{
+    $model = new \App\Models\ProductModel();
+    $produk = $model->find($id);
+
+   // dd($produk);
+
+
+    if (!$produk) {
+        throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound("Produk dengan ID $id tidak ditemukan.");
+    }
+
+    $data = [
+        'produk_id' => $produk['id'],
+        'produk_name' => $produk['nama'],
+        'produk_price' => $produk['harga'],
+        'produk_old_price' => $produk['harga_lama'] ?? $produk['harga'],
+        //'produk_description' => $produk['deskripsi'],
+        'produk_image' => $produk['foto'],
+        'page_title' => 'Detail Produk'
+    ];
+
+    return view('v_detail_produk', $data);
+}
+
+
 }

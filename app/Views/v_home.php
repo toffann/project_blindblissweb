@@ -26,6 +26,8 @@ if (session()->getFlashData('success')) {
                     <img src="<?php echo base_url() . "NiceAdmin/assets/img/" . $item['foto'] ?>" alt="..." width="300px">
                     <h5 class="card-title"><?php echo $item['nama'] ?><br><?php echo number_to_currency($item['harga'], 'IDR') ?></h5>
                     <button type="submit" class="btn btn-info rounded-pill">Beli</button>
+                    <a class="btn btn-info rounded-pill" style="background-color: #F7C948; border: none;" href="<?= base_url('produk/' . $item['id']) ?>">Lihat Detail</a>
+
                 </div>
             </div>
             <?= form_close() ?>

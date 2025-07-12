@@ -11,13 +11,12 @@ if (uri_string() != "") {
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Toko Blue - <?= isset($hlm) ? $hlm : ucwords(uri_string()) ?> </title>
+  <title>Blind Bliss<?= isset($hlm) ? $hlm : ucwords(uri_string()) ?> </title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="/NiceAdmin/assets/img/favicon.png" rel="icon">
-  <link href="/NiceAdmin/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="/NiceAdmin/assets/img/logoB.png" rel="icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -50,8 +49,8 @@ if (uri_string() != "") {
 
     <div class="d-flex align-items-center justify-content-between">
       <a href="index.html" class="logo d-flex align-items-center">
-        <img src="Niceadmin/assets/ts/img/logo.png" alt="">
-        <span class="d-none d-lg-block">Toko Blue</span>
+        <img src="NiceAdmin/assets/img/logoB.png" alt="">
+        <span class="d-none d-lg-block">Blind Bliss</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->

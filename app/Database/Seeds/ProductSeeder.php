@@ -14,7 +14,7 @@ class ProductSeeder extends Seeder
                 'nama' => 'ASUS TUF A15 FA506NF',
                 'harga'  => 10899000,
                 'jumlah' => 5,
-                'foto' => 'asus_tuf_a15.jpg',
+                'foto' => 'produk1.jpg',
                 'created_at' => date("Y-m-d H:i:s"),
             ],
             [

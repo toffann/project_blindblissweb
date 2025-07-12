@@ -1,5 +1,8 @@
 <?= $this->extend('layout_clear') ?>
 <?= $this->section('content') ?>
+
+<div class="login-page-background"></div>
+
 <?php
 $username = [
     'name' => 'username',
@@ -18,14 +21,15 @@ $password = [
         <div class="row justify-content-center">
             <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
 
-                <div class="d-flex justify-content-center py-4">
-                    <a href="index.html" class="logo d-flex align-items-center w-auto">
-                        <img src="<?php echo base_url() ?>NiceAdmin/assets/img/logo.png" alt="">
-                        <span class="d-none d-lg-block"> Toko Blue </span>
-                    </a>
-                </div><!-- End Logo -->
-
-                <div class="card mb-3">
+                <div class="text-center mb-3">
+    <a href="index.html" class="d-flex align-items-center justify-content-center">
+        <img src="<?= base_url() ?>NiceAdmin/assets/img/logoB.png" 
+             alt="Logo Blind Bliss" 
+             style="height: 80px; width: auto; object-fit: contain; margin-right: 10px;"> <!-- Ini yang diubah biar ukuran logonya keliatan -->
+        <span class="fs-3 fw-bold text-dark">Blind Bliss</span>
+    </a>
+</div>
+<div class="card mb-3">
 
                     <div class="card-body">
 
@@ -64,7 +68,10 @@ $password = [
     <div class="invalid-feedback">Please enter your password!</div>
 </div>
 <div class="col-12">
-    <?= form_submit('submit', 'Login', ['class' => 'btn btn-primary w-100']) ?>
+    <?= form_submit('submit', 'Login', [
+    'class' => 'btn w-100',
+    'style' => 'background-color: #EF476F; color: #fff; border: none;'
+]) ?>
 </div>
 
 <?= form_close() ?>
@@ -72,10 +79,6 @@ $password = [
                 </div>
 
                 <div class="credits">
-                    <!-- All the links in the footer should remain intact. -->
-                    <!-- You can delete the links only if you purchased the pro version. -->
-                    <!-- Licensing information: https://bootstrapmade.com/license/ -->
-                    <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
                     Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
                 </div>
 
