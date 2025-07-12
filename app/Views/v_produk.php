@@ -35,6 +35,7 @@ if (session()->getFlashData('failed')) {
             <th scope="col">#</th>
             <th scope="col">Nama</th>
             <th scope="col">Harga</th>
+            <th scope="col">Deskripsi</th>
             <th scope="col">Jumlah</th>
             <th scope="col">Foto</th>
             <th scope="col"></th>
@@ -46,6 +47,7 @@ if (session()->getFlashData('failed')) {
                 <th scope="row"><?php echo $index + 1 ?></th>
                 <td><?php echo $produk['nama'] ?></td>
                 <td><?php echo $produk['harga'] ?></td>
+                <td><?= esc($produk['deskripsi']) ?></td>
                 <td><?php echo $produk['jumlah'] ?></td>
                 <td>
                     <?php if ($produk['foto'] != '' and file_exists("NiceAdmin/assets/img/" . $produk['foto'] . "")) : ?>
@@ -83,6 +85,10 @@ if (session()->getFlashData('failed')) {
                                 <div class="form-group">
                                     <label for="name">Jumlah</label>
                                     <input type="text" name="jumlah" class="form-control" id="jumlah" value="<?= $produk['jumlah'] ?>" placeholder="Jumlah Barang" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="deskripsi">Deskripsi</label>
+                                    <textarea name="deskripsi" class="form-control" id="deskripsi" rows="3" placeholder="Deskripsi Produk"><?= esc($produk['deskripsi']) ?></textarea>
                                 </div>
                                 <img src="<?php echo base_url() . "img/" . $produk['foto'] ?>" width="100px">
                                 <div class="form-check">
@@ -131,6 +137,10 @@ if (session()->getFlashData('failed')) {
                     <div class="form-group">
                         <label for="name">Jumlah</label>
                         <input type="text" name="jumlah" class="form-control" id="jumlah" placeholder="Jumlah Barang" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="deskripsi">Deskripsi</label>
+                        <textarea name="deskripsi" class="form-control" id="deskripsi" rows="3" placeholder="Deskripsi Produk"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="name">Foto</label>

@@ -14,21 +14,21 @@ class ProductSeeder extends Seeder
                 'nama' => 'ASUS TUF A15 FA506NF',
                 'harga'  => 10899000,
                 'jumlah' => 5,
-                'foto' => 'produk1.jpg',
+                'foto' => 'produk1.png',
                 'created_at' => date("Y-m-d H:i:s"),
             ],
             [
                 'nama' => 'Asus Vivobook 14 A1404ZA',
                 'harga'  => 6899000,
                 'jumlah' => 7,
-                'foto' => 'asus_vivobook_14.jpg',
+                'foto' => 'produk2.jpg',
                 'created_at' => date("Y-m-d H:i:s"),
             ],
             [
                 'nama' => 'Lenovo IdeaPad Slim 3-14IAU7',
                 'harga'  => 6299000,
                 'jumlah' => 5,
-                'foto' => 'lenovo_idepad_slim_3.jpg',
+                'foto' => 'produk3.jpg',
                 'created_at' => date("Y-m-d H:i:s"),
             ]
         ];

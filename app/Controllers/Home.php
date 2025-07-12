@@ -28,7 +28,7 @@ class Home extends BaseController
         return view('v_home', $data);
     }
 
-    public function profile()
+    public function history()
     {
         $username = session()->get('username');
         $data['username'] = $username;
@@ -50,7 +50,7 @@ class Home extends BaseController
 
         $data['product'] = $product;
 
-        return view('v_profile', $data);
+        return view('v_history', $data);
     }
 
     // bagian metode hello unutk menampilkan data product dan kategori
