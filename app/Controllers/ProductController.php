@@ -118,29 +118,37 @@ class ProductController extends BaseController
 
     // method untuk detail prosuk
     public function detail($id)
-{
-    $model = new \App\Models\ProductModel();
-    $produk = $model->find($id);
-
-   // dd($produk);
-
-
-    if (!$produk) {
-        throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound("Produk dengan ID $id tidak ditemukan.");
+    {
+        $model = new \App\Models\ProductModel();
+        $produk = $model->find($id);
+    
+        if (!$produk) {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound("Produk dengan ID $id tidak ditemukan.");
+        }
+    
+        // Ambil produk terkait (semua produk kecuali produk yang sedang dilihat)
+        $recommendedProducts = $model->where('id !=', $id)->findAll();
+    
+        // Debugging: Cek apakah produk terkait ditemukan
+        if (empty($recommendedProducts)) {
+            log_message('info', 'Tidak ada produk terkait ditemukan untuk produk ID: ' . $id);
+        } else {
+            log_message('info', 'Produk terkait ditemukan: ' . json_encode($recommendedProducts));
+        }
+    
+        $data = [
+            'produk_id' => $produk['id'],
+            'produk_name' => $produk['nama'],
+            'produk_price' => $produk['harga'],
+            'produk_old_price' => $produk['harga_lama'] ?? $produk['harga'],
+            'produk_description' => $produk['deskripsi'],
+            'produk_image' => $produk['foto'],
+            'page_title' => 'Detail Produk',
+            'recommended_products' => $recommendedProducts // Tambahkan produk terkait ke data
+        ];
+    
+        return view('v_detail_produk', $data);
     }
-
-    $data = [
-        'produk_id' => $produk['id'],
-        'produk_name' => $produk['nama'],
-        'produk_price' => $produk['harga'],
-        'produk_old_price' => $produk['harga_lama'] ?? $produk['harga'],
-        'produk_description' => $produk['deskripsi'],
-        'produk_image' => $produk['foto'],
-        'page_title' => 'Detail Produk'
-    ];
-
-    return view('v_detail_produk', $data);
-}
 
 
 }

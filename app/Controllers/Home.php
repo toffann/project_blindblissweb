@@ -23,8 +23,16 @@ class Home extends BaseController
 
     public function index()
     {
-        $product = $this->product->findAll();
+        $sort = $this->request->getGet('sort');
+        if ($sort === 'price_asc') {
+            $product = $this->product->orderBy('harga', 'ASC')->findAll();
+        } elseif ($sort === 'price_desc') {
+            $product = $this->product->orderBy('harga', 'DESC')->findAll();
+        } else {
+            $product = $this->product->findAll();
+        }
         $data['product'] = $product;
+        $data['sort'] = $sort; // pass current sort to view
         return view('v_home', $data);
     }
 

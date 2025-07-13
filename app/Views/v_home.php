@@ -10,6 +10,19 @@ if (session()->getFlashData('success')) {
 <?php
 }
 ?>
+<!-- Sort By Dropdown -->
+<div class="mb-3">
+    <div class="dropdown">
+        <a href="#" class="text-decoration-none text-dark" id="sortDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="cursor:pointer;">
+            Sort By <span class="ms-1">&#9662;</span>
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="sortDropdown">
+            <li><a class="dropdown-item <?= (isset($sort) && $sort === 'price_asc') ? 'active' : '' ?>" href="<?= base_url() ?>?sort=price_asc">Low Price</a></li>
+            <li><a class="dropdown-item <?= (isset($sort) && $sort === 'price_desc') ? 'active' : '' ?>" href="<?= base_url() ?>?sort=price_desc">High Price</a></li>
+            <li><a class="dropdown-item <?= empty($sort) ? 'active' : '' ?>" href="<?= base_url() ?>">Default</a></li>
+        </ul>
+    </div>
+</div>
 <!-- Table with stripped rows -->
 <div class="row">
     <?php foreach ($product as $key => $item) : ?>

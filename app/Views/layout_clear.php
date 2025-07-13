@@ -17,7 +17,7 @@ if (uri_string() != "") {
     <meta content="" name="keywords">
 
     <!-- Favicons -->
-    <link href="<?= base_url() ?>NiceAdmin/assets/img/logoB.png" rel="icon">
+    <link href="<?= base_url() ?>NiceAdmin/assets/img/logoB_baru.png" rel="icon">
 
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">

@@ -20,7 +20,7 @@ if (uri_string() != "") {
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="assets/img/logoB.png" rel="icon">
+  <link href="NiceAdmin/assets/img/logoB_baru.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->

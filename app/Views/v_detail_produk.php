@@ -45,65 +45,32 @@
     <div class="container px-4 px-lg-5 mt-5">
         <h2 class="fw-bolder mb-4">Produk Terkait</h2>
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-            <div class="col mb-5">
-                <div class="card h-100">
-                    <img class="card-img-top" src="<?= base_url('NiceAdmin/assets/img/produk1.jpg') ?>" alt="Produk Terkait 1" />
-                    <div class="card-body p-4">
-                        <div class="text-center">
-                            <h5 class="fw-bolder">Produk Terkait 1</h5>
-                            $25.00
+            <?php if (!empty($recommended_products)) : ?>
+                <?php foreach ($recommended_products as $rec_product) : ?>
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <img class="card-img-top" src="<?= base_url('NiceAdmin/assets/img/' . $rec_product['foto']) ?>" alt="<?= esc($rec_product['nama']) ?>" />
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <h5 class="fw-bolder"><?= esc($rec_product['nama']) ?></h5>
+                                    IDR<?= number_format($rec_product['harga'], 2) ?>
+                                </div>
+                            </div>
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="<?= base_url('produk/' . $rec_product['id']) ?>">Lihat Detail</a></div>
+                            </div>
                         </div>
                     </div>
-                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="<?= base_url('/produk/1') ?>">Lihat Detail</a></div>
-                    </div>
+                <?php endforeach; ?>
+            <?php else : ?>
+                <div class="col-12 text-center">
+                    <p>Tidak ada produk terkait lainnya.</p>
                 </div>
-            </div>
-            <div class="col mb-5">
-                <div class="card h-100">
-                    <img class="card-img-top" src="<?= base_url('NiceAdmin/assets/img/produk2.jpg') ?>" alt="Produk Terkait 2" />
-                    <div class="card-body p-4">
-                        <div class="text-center">
-                            <h5 class="fw-bolder">Produk Terkait 2</h5>
-                            $35.00
-                        </div>
-                    </div>
-                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="<?= base_url('/produk/2') ?>">Lihat Detail</a></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col mb-5">
-                <div class="card h-100">
-                    <img class="card-img-top" src="<?= base_url('NiceAdmin/assets/img/produk3.jpg') ?>" alt="Produk Terkait 3" />
-                    <div class="card-body p-4">
-                        <div class="text-center">
-                            <h5 class="fw-bolder">Produk Terkait 3</h5>
-                            $25.00
-                        </div>
-                    </div>
-                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="<?= base_url('/produk/3') ?>">Lihat Detail</a></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col mb-5">
-                <div class="card h-100">
-                    <img class="card-img-top" src="<?= base_url('NiceAdmin/assets/img/produk4.jpg') ?>" alt="Produk Terkait 4" />
-                    <div class="card-body p-4">
-                        <div class="text-center">
-                            <h5 class="fw-bolder">Produk Terkait 4</h5>
-                            $25.00
-                        </div>
-                    </div>
-                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="<?= base_url('/produk/4') ?>">Lihat Detail</a></div>
-                    </div>
-                </div>
-            </div>
+            <?php endif; ?>
         </div>
     </div>
 </section>
+
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {

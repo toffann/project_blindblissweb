@@ -23,7 +23,7 @@ $password = [
 
                 <div class="text-center mb-3">
     <a href="index.html" class="d-flex align-items-center justify-content-center">
-        <img src="<?= base_url() ?>NiceAdmin/assets/img/logoB.png" 
+        <img src="<?= base_url() ?>NiceAdmin\assets\img\logoB_baru.png" 
              alt="Logo Blind Bliss" 
              style="height: 80px; width: auto; object-fit: contain; margin-right: 10px;"> <!-- Ini yang diubah biar ukuran logonya keliatan -->
         <span class="fs-3 fw-bold text-dark">Blind Bliss</span>
