@@ -8,6 +8,8 @@ use Dompdf\Dompdf;
 class ProductController extends BaseController
 {
     protected $product;
+    protected $categories = ['blind boxes', 'accessories', 'action figures']; // Mendefinisikan kategori
+
 
     function __construct()
     {
@@ -19,6 +21,7 @@ class ProductController extends BaseController
     {
         $product = $this->product->findAll();
         $data['product'] = $product;
+        $data['categories'] = $this->categories; // Meneruskan kategori ke view v_produk
 
         return view('v_produk', $data);
     }
@@ -32,6 +35,7 @@ class ProductController extends BaseController
             'harga' => $this->request->getPost('harga'),
             'deskripsi' => $this->request->getPost('deskripsi'),
             'jumlah' => $this->request->getPost('jumlah'),
+            'kategori' => $this->request->getPost('kategori'), // Menambahkan kategori
             'created_at' => date("Y-m-d H:i:s")
         ];
 
@@ -54,19 +58,20 @@ class ProductController extends BaseController
             'harga' => $this->request->getPost('harga'),
             'deskripsi' => $this->request->getPost('deskripsi'),
             'jumlah' => $this->request->getPost('jumlah'),
+            'kategori' => $this->request->getPost('kategori'), // Menambahkan kategori
             'updated_at' => date("Y-m-d H:i:s")
         ];
 
-        if ($this->request->getPost('check') == 1) {
-            if ($dataProduk['foto'] != '' and file_exists("img/" . $dataProduk['foto'] . "")) {
-                unlink("img/" . $dataProduk['foto']);
+       if ($this->request->getPost('check') == 1) {
+            if ($dataProduk['foto'] != '' and file_exists("NiceAdmin/assets/img/" . $dataProduk['foto'] . "")) { 
+                unlink("NiceAdmin/assets/img/" . $dataProduk['foto']);
             }
-
+            
             $dataFoto = $this->request->getFile('foto');
 
             if ($dataFoto->isValid()) {
                 $fileName = $dataFoto->getRandomName();
-                $dataFoto->move('NiceAdmin/assets//img/', $fileName);
+                $dataFoto->move('NiceAdmin/assets/img/', $fileName);
                 $dataForm['foto'] = $fileName;
             }
         }
@@ -76,18 +81,19 @@ class ProductController extends BaseController
         return redirect('produk')->with('success', 'Data Berhasil Diubah');
     }
 
-    public function delete($id)
+     public function delete($id)
     {
         $dataProduk = $this->product->find($id);
 
-        if ($dataProduk['foto'] != '' and file_exists("img/" . $dataProduk['foto'] . "")) {
-            unlink("img/" . $dataProduk['foto']);
+        if ($dataProduk['foto'] != '' and file_exists("NiceAdmin/assets/img/" . $dataProduk['foto'] . "")) { 
+            unlink("NiceAdmin/assets/img/" . $dataProduk['foto']); 
         }
 
         $this->product->delete($id);
 
         return redirect('produk')->with('success', 'Data Berhasil Dihapus');
     }
+
 
     public function download()
     {
@@ -126,9 +132,11 @@ class ProductController extends BaseController
             throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound("Produk dengan ID $id tidak ditemukan.");
         }
     
-        // Ambil produk terkait (semua produk kecuali produk yang sedang dilihat)
-        $recommendedProducts = $model->where('id !=', $id)->findAll();
-    
+         // Ambil produk terkait (semua produk kecuali produk yang sedang dilihat)
+        $recommendedProducts = $model->where('id !=', $id)
+                                    ->where('kategori', $produk['kategori']) // ADDED: Filter rekomendasi berdasarkan kategori
+                                    ->findAll();
+
         // Debugging: Cek apakah produk terkait ditemukan
         if (empty($recommendedProducts)) {
             log_message('info', 'Tidak ada produk terkait ditemukan untuk produk ID: ' . $id);
@@ -143,8 +151,9 @@ class ProductController extends BaseController
             'produk_old_price' => $produk['harga_lama'] ?? $produk['harga'],
             'produk_description' => $produk['deskripsi'],
             'produk_image' => $produk['foto'],
+             'produk_kategori' => $produk['kategori'], // Menambahkan kategori produk utama
             'page_title' => 'Detail Produk',
-            'recommended_products' => $recommendedProducts // Tambahkan produk terkait ke data
+            'recommended_products' => $recommendedProducts // Menambahkan produk terkait ke data
         ];
     
         return view('v_detail_produk', $data);

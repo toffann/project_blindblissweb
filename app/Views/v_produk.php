@@ -37,6 +37,7 @@ if (session()->getFlashData('failed')) {
             <th scope="col">Harga</th>
             <th scope="col">Deskripsi</th>
             <th scope="col">Jumlah</th>
+            <th scope="col">Kategori</th> 
             <th scope="col">Foto</th>
             <th scope="col"></th>
         </tr>
@@ -49,7 +50,7 @@ if (session()->getFlashData('failed')) {
                 <td><?php echo $produk['harga'] ?></td>
                 <td><?= esc($produk['deskripsi']) ?></td>
                 <td><?php echo $produk['jumlah'] ?></td>
-                <td>
+                <td><?= ucwords($produk['kategori'] ?? '-') ?></td> <td>
                     <?php if ($produk['foto'] != '' and file_exists("NiceAdmin/assets/img/" . $produk['foto'] . "")) : ?>
                         <img src="<?php echo base_url() . "NiceAdmin/assets/img/" . $produk['foto'] ?>" width="100px">
                     <?php endif; ?>
@@ -85,6 +86,15 @@ if (session()->getFlashData('failed')) {
                                 <div class="form-group">
                                     <label for="name">Jumlah</label>
                                     <input type="text" name="jumlah" class="form-control" id="jumlah" value="<?= $produk['jumlah'] ?>" placeholder="Jumlah Barang" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="kategori">Kategori</label>
+                                    <select name="kategori" class="form-control" id="kategori" required>
+                                        <option value="">Pilih Kategori</option>
+                                        <?php foreach ($categories as $cat) : ?>
+                                            <option value="<?= $cat ?>" <?= ($produk['kategori'] ?? '') === $cat ? 'selected' : '' ?>><?= ucwords($cat) ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="deskripsi">Deskripsi</label>
@@ -137,6 +147,15 @@ if (session()->getFlashData('failed')) {
                     <div class="form-group">
                         <label for="name">Jumlah</label>
                         <input type="text" name="jumlah" class="form-control" id="jumlah" placeholder="Jumlah Barang" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="kategori">Kategori</label>
+                        <select name="kategori" class="form-control" id="kategori" required>
+                            <option value="">Pilih Kategori</option>
+                            <?php foreach ($categories as $cat) : ?>
+                                <option value="<?= $cat ?>"><?= ucwords($cat) ?></option>
+                            <?php endforeach; ?>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="deskripsi">Deskripsi</label>

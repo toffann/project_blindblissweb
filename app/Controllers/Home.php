@@ -11,6 +11,8 @@ class Home extends BaseController
     protected $product;
     protected $transaction;
     protected $transaction_detail;
+    protected $categories = ['blind boxes', 'accessories', 'action figures']; // ADDED: Daftar kategori
+
 
     function __construct()
     {
@@ -24,6 +26,15 @@ class Home extends BaseController
     public function index()
     {
         $sort = $this->request->getGet('sort');
+        $category = $this->request->getGet('category'); // ADDED: Ambil parameter kategori
+        
+        $query = $this->product; // ADDED: Inisialisasi query builder
+
+        // ADDED: Tambahkan filter kategori jika ada
+        if (!empty($category) && in_array($category, $this->categories)) {
+            $query = $query->where('kategori', $category);
+        }
+
         if ($sort === 'price_asc') {
             $product = $this->product->orderBy('harga', 'ASC')->findAll();
         } elseif ($sort === 'price_desc') {
@@ -33,6 +44,9 @@ class Home extends BaseController
         }
         $data['product'] = $product;
         $data['sort'] = $sort; // pass current sort to view
+        $data['current_category'] = $category; // ADDED: Kirim kategori aktif ke view
+        $data['categories'] = $this->categories; // ADDED: Kirim daftar kategori ke view
+
         return view('v_home', $data);
     }
 
@@ -81,7 +95,7 @@ class Home extends BaseController
     }
 
 
-    public function keranjang($id = null)
+    /*public function keranjang($id = null)
     {
         $data = [
             'kat' => [
@@ -103,4 +117,7 @@ class Home extends BaseController
         }
     }
     // return view itu untuk mengembalikan file ke dalam folder view
+    */
+
 }
+    

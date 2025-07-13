@@ -10,9 +10,10 @@ if (session()->getFlashData('success')) {
 <?php
 }
 ?>
-<!-- Sort By Dropdown -->
-<div class="mb-3">
-    <div class="dropdown">
+<!-- Sort dan Filter By Dropdown -->
+<div class="d-flex mb-3">
+     <!-- Sort By Harga -->
+    <div class="dropdown me-3">
         <a href="#" class="text-decoration-none text-dark" id="sortDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="cursor:pointer;">
             Sort By <span class="ms-1">&#9662;</span>
         </a>
@@ -20,6 +21,19 @@ if (session()->getFlashData('success')) {
             <li><a class="dropdown-item <?= (isset($sort) && $sort === 'price_asc') ? 'active' : '' ?>" href="<?= base_url() ?>?sort=price_asc">Low Price</a></li>
             <li><a class="dropdown-item <?= (isset($sort) && $sort === 'price_desc') ? 'active' : '' ?>" href="<?= base_url() ?>?sort=price_desc">High Price</a></li>
             <li><a class="dropdown-item <?= empty($sort) ? 'active' : '' ?>" href="<?= base_url() ?>">Default</a></li>
+        </ul>
+    </div>
+    
+    <!-- Dropdown Filter by Kategoru -->
+    <div class="dropdown">
+        <a href="#" class="text-decoration-none text-dark" id="categoryDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="cursor:pointer;">
+            Categories <span class="ms-1">&#9662;</span>
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="categoryDropdown">
+            <li><a class="dropdown-item <?= empty($current_category) ? 'active' : '' ?>" href="<?= base_url() ?><?= isset($sort) && !empty($sort) ? '?sort=' . urlencode($sort) : '' ?>">All</a></li>
+            <?php foreach ($categories as $cat) : ?>
+                <li><a class="dropdown-item <?= (isset($current_category) && $current_category === $cat) ? 'active' : '' ?>" href="<?= base_url() ?>?category=<?= urlencode($cat) ?><?= isset($sort) && !empty($sort) ? '&sort=' . urlencode($sort) : '' ?>"><?= ucwords($cat) ?></a></li>
+            <?php endforeach ?>
         </ul>
     </div>
 </div>
