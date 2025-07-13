@@ -90,7 +90,7 @@ if (session()->getFlashData('failed')) {
                                     <label for="deskripsi">Deskripsi</label>
                                     <textarea name="deskripsi" class="form-control" id="deskripsi" rows="3" placeholder="Deskripsi Produk"><?= esc($produk['deskripsi']) ?></textarea>
                                 </div>
-                                <img src="<?php echo base_url() . "img/" . $produk['foto'] ?>" width="100px">
+                                <img src="<?php echo base_url() . "NiceAdmin/assets/img/" . $produk['foto'] ?>" width="100px">
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" id="check" name="check" value="1">
                                     <label class="form-check-label" for="check">

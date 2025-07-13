@@ -276,6 +276,7 @@ if (uri_string() != "") {
   <!-- Vendor JS Files -->
   <script src="/NiceAdmin/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <!-- Template Main JS File -->
-  <script src="/NiceAdmin/assets/js/main.js"></script>
+  <!-- <script src="/NiceAdmin/assets/js/main.js"></script> -->
 
+  
 </body>

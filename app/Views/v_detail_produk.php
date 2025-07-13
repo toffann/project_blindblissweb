@@ -13,8 +13,8 @@
                 <div class="small mb-1">SKU: BST-<?= $produk_id ?></div>
                 <h1 class="display-5 fw-bolder"><?= $produk_name ?></h1>
                 <div class="fs-5 mb-5">
-                    <span class="text-decoration-line-through">$<?= number_format($produk_old_price, 2) ?></span>
-                    <span>$<?= number_format($produk_price, 2) ?></span>
+                    <span class="text-decoration-line-through">IDR<?= number_format($produk_old_price, 2) ?></span>
+                    <span>IDR<?= number_format($produk_price, 2) ?></span>
                 </div>
 
                 <div class="product-description mb-4">
@@ -27,7 +27,10 @@
 
                 <form action="<?= base_url('/keranjang') ?>" method="post" class="d-flex align-items-center gap-3">
                     <?= csrf_field() ?>
-                    <input type="hidden" name="produk_id" value="<?= $produk_id ?>">
+                    <input type="hidden" name="id" value="<?= $produk_id ?>">
+                    <input type="hidden" name="harga" value="<?= $produk_price ?>">
+                    <input type="hidden" name="nama" value="<?= $produk_name ?>">
+                    <input type="hidden" name="foto" value="<?= $produk_image ?>">
                     <div class="input-group" style="width: 120px;">
                         <button type="button" class="btn btn-outline-secondary no-hover" id="button-minus" style="width: 30px; height: 30px; padding: 0;">-</button>
                         <input type="text" name="quantity" id="inputQuantity" class="form-control text-center" value="1" min="1" style="width: 60px; height: 30px; padding: 0;" />

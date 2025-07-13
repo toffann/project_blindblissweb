@@ -36,7 +36,7 @@ class TransaksiController extends BaseController
     {
         $this->cart->insert(array(
             'id'        => $this->request->getPost('id'),
-            'qty'       => 1,
+            'qty'       => $this->request->getPost('quantity'),
             'price'     => $this->request->getPost('harga'),
             'name'      => $this->request->getPost('nama'),
             'options'   => array('foto' => $this->request->getPost('foto'))
