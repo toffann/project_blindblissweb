@@ -43,7 +43,11 @@ $routes->get('contact', 'Home::contact', ['filter' => 'auth']);
 
 $routes->resource('api', ['controller' => 'apiController']);
 
+// app/Config/Routes.php
+
+
+// Rute untuk update status transaksi (bisa di dalam grup 'keranjang' atau terpisah)
+$routes->post('transaksi/update_status', 'TransaksiController::updateStatus', ['filter' => 'auth']);
 
 // faq
-
 $routes->get('faq', 'Home::faq', ['filter' => 'auth']);

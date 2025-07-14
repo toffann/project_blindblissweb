@@ -12,3 +12,4 @@ class TransactionModel extends Model
         'username', 'total_harga', 'alamat', 'ongkir', 'status', 'created_at', 'updated_at'
     ];
 }
+

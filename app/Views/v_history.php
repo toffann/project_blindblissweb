@@ -3,7 +3,6 @@
 History Transaksi Pembelian <strong><?= $username ?></strong>
 <hr>
 <div class="table-responsive">
-    <!-- Table with stripped rows -->
     <table class="table datatable">
         <thead>
             <tr>
@@ -27,14 +26,32 @@ History Transaksi Pembelian <strong><?= $username ?></strong>
                         <td><?php echo $item['created_at'] ?></td>
                         <td><?php echo number_to_currency($item['total_harga'], 'IDR') ?></td>
                         <td><?php echo $item['alamat'] ?></td>
-                        <td><?php echo ($item['status'] == "1") ? "Sudah Selesai" : "Belum Selesai" ?></td>
+                        <td>
+                            <?php
+                            if ($item['status'] == "1") {
+                                echo "<span class='badge bg-success'>Sudah Selesai</span>";
+                            } elseif ($item['status'] == "2") { // Asumsi '2' untuk 'Diproses'
+                                echo "<span class='badge bg-warning text-dark'>Diproses</span>";
+                            } else {
+                                echo "<span class='badge bg-info'>Belum Selesai</span>"; // Asumsi '0' atau selain '1','2' adalah 'Belum Selesai'
+                            }
+                            ?>
+                        </td>
                         <td>
                             <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#detailModal-<?= $item['id'] ?>">
                                 Detail
                             </button>
+                            <?php if ($item['status'] == "0") : // Tombol hanya muncul jika status 'Belum Selesai' (asumsi 0) ?>
+                                <?= form_open('transaksi/update_status', ['style' => 'display:inline; margin-left: 5px;']) ?>
+                                    <?= form_hidden('transaction_id', $item['id']) ?>
+                                    <?= form_hidden('new_status', '2') // Mengubah ke status 'Diproses' (asumsi 2) ?>
+                                    <button type="submit" class="btn btn-primary btn-sm" onclick="return confirm('Apakah Anda yakin ingin menandai pembayaran COD telah diproses untuk transaksi ini?')">
+                                        Pembayaran COD
+                                    </button>
+                                <?= form_close() ?>
+                            <?php endif; ?>
                         </td>
                     </tr>
-                    <!-- Detail Modal Begin -->
                     <div class="modal fade" id="detailModal-<?= $item['id'] ?>" tabindex="-1">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
@@ -44,11 +61,12 @@ History Transaksi Pembelian <strong><?= $username ?></strong>
                                 </div>
                                 <div class="modal-body">
                                     <?php
-                                    if (!empty($product)) {
+                                    // Pastikan $product ada dan memiliki kunci $item['id']
+                                    if (isset($product[$item['id']]) && !empty($product[$item['id']])) {
                                         foreach ($product[$item['id']] as $index2 => $item2) : ?>
                                             <?php echo $index2 + 1 . ")" ?>
-                                            <?php if ($item2['foto'] != '' and file_exists("Niceadmin/assets/img/" . $item2['foto'] . "")) : ?>
-                                                <img src="<?php echo base_url() . "Niceadmin/assets/img/" . $item2['foto'] ?>" width="100px">
+                                            <?php if ($item2['foto'] != '' and file_exists("NiceAdmin/assets/img/" . $item2['foto'] . "")) : // PERBAIKI PATH Niceadmin ke NiceAdmin ?>
+                                                <img src="<?php echo base_url() . "NiceAdmin/assets/img/" . $item2['foto'] ?>" width="100px">
                                             <?php endif; ?>
                                             <strong><?= $item2['nama'] ?></strong>
                                             <?= number_to_currency($item2['harga'], 'IDR') ?>
@@ -56,8 +74,10 @@ History Transaksi Pembelian <strong><?= $username ?></strong>
                                             <?= "(" . $item2['jumlah'] . " pcs)" ?><br>
                                             <?= number_to_currency($item2['subtotal_harga'], 'IDR') ?>
                                             <hr>
-                                    <?php
+                                        <?php
                                         endforeach;
+                                    } else {
+                                        echo "<p>Detail produk tidak tersedia untuk transaksi ini.</p>";
                                     }
                                     ?>
                                     Ongkir <?= number_to_currency($item['ongkir'], 'IDR') ?>
@@ -65,13 +85,11 @@ History Transaksi Pembelian <strong><?= $username ?></strong>
                             </div>
                         </div>
                     </div>
-                    <!-- Detail Modal End -->
-            <?php
+                    <?php
                 endforeach;
             endif;
             ?>
         </tbody>
     </table>
-    <!-- End Table with stripped rows -->
-</div>
+    </div>
 <?= $this->endSection() ?>

@@ -13,6 +13,7 @@ class TransaksiController extends BaseController
     protected $apiKey;
     protected $transaction;
     protected $transaction_detail;
+    protected $transactionModel; // ADDED: Properti untuk TransactionModel
 
     function __construct()
     {
@@ -23,6 +24,8 @@ class TransaksiController extends BaseController
         $this->apiKey = env('COST_KEY');
         $this->transaction = new TransactionModel;
         $this->transaction_detail = new TransactionDetailModel;
+        $this->transactionModel = new TransactionModel(); // ADDED: Inisialisasi
+
     }
 
     public function index()
@@ -175,6 +178,35 @@ class TransaksiController extends BaseController
             $this->cart->destroy();
 
             return redirect()->to(base_url());
+        }
+    }
+
+    public function updateStatus()
+    {
+        $transactionId = $this->request->getPost('transaction_id');
+        $newStatus = $this->request->getPost('new_status');
+
+        if (empty($transactionId) || !in_array($newStatus, ['0', '1', '2'])) { // Validasi dasar
+            return redirect()->back()->with('failed', 'Data status tidak valid.');
+        }
+
+        // Ambil data transaksi yang ada untuk validasi lebih lanjut jika perlu
+        $transaction = $this->transactionModel->find($transactionId);
+
+        if (!$transaction) {
+            return redirect()->back()->with('failed', 'Transaksi tidak ditemukan.');
+        }
+
+        // Contoh validasi: hanya bisa mengubah dari 'Belum Selesai' (0) ke 'Diproses' (2)
+        if ($transaction['status'] == '0' && $newStatus == '2') {
+            $dataToUpdate = ['status' => $newStatus];
+            if ($this->transactionModel->update($transactionId, $dataToUpdate)) {
+                return redirect()->back()->with('success', 'Status transaksi berhasil diubah menjadi Diproses.');
+            } else {
+                return redirect()->back()->with('failed', 'Gagal mengubah status transaksi.');
+            }
+        } else {
+            return redirect()->back()->with('failed', 'Perubahan status tidak diizinkan.');
         }
     }
 }
