@@ -12,7 +12,7 @@
     <?php
     $no = 1;
     foreach ($product as $index => $produk) :
-        $path = "NiceAdmin/assets/img/" . $produk['foto'];
+        $path = FCPATH . "NiceAdmin/assets/img/" . $produk['foto'];
         $type = pathinfo($path, PATHINFO_EXTENSION);
         $data = file_get_contents($path);
         $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);

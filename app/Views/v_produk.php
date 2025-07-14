@@ -24,7 +24,7 @@ if (session()->getFlashData('failed')) {
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">
     Tambah Data
 </button>
-<a type="button" class="btn btn-success" href="<?= base_url() ?> produk/download">
+<a type="button" class="btn btn-success" href="<?= base_url('produk/download') ?>">
     Download Data
 </a>
 

@@ -16,7 +16,7 @@ if (uri_string() != "") {
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="/NiceAdmin/assets/img/logoB.png" rel="icon">
+  <link href="NiceAdmin\assets\img\logoB_baru.png" rel="icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -49,7 +49,7 @@ if (uri_string() != "") {
 
     <div class="d-flex align-items-center justify-content-between">
       <a href="index.html" class="logo d-flex align-items-center">
-        <img src="NiceAdmin/assets/img/logoB.png" alt="">
+        <img src="/NiceAdmin/assets/img/logoB_baru.png" alt="">
         <span class="d-none d-lg-block">Blind Bliss</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>

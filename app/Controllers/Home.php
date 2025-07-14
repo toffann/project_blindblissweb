@@ -11,7 +11,7 @@ class Home extends BaseController
     protected $product;
     protected $transaction;
     protected $transaction_detail;
-    protected $categories = ['blind boxes', 'accessories', 'action figures']; // ADDED: Daftar kategori
+    protected $categories = ['blind boxes', 'accessories', 'action figures']; // Daftar kategori
 
 
     function __construct()
@@ -26,11 +26,11 @@ class Home extends BaseController
     public function index()
     {
         $sort = $this->request->getGet('sort');
-        $category = $this->request->getGet('category'); // ADDED: Ambil parameter kategori
+        $category = $this->request->getGet('category'); // Ambil parameter kategori
         
         $query = $this->product; // ADDED: Inisialisasi query builder
 
-        // ADDED: Tambahkan filter kategori jika ada
+        // Menambahkan filter kategori jika ada
         if (!empty($category) && in_array($category, $this->categories)) {
             $query = $query->where('kategori', $category);
         }
@@ -44,8 +44,8 @@ class Home extends BaseController
         }
         $data['product'] = $product;
         $data['sort'] = $sort; // pass current sort to view
-        $data['current_category'] = $category; // ADDED: Kirim kategori aktif ke view
-        $data['categories'] = $this->categories; // ADDED: Kirim daftar kategori ke view
+        $data['current_category'] = $category; // AMengirim kategori aktif ke view
+        $data['categories'] = $this->categories; // Mengirim daftar kategori ke view
 
         return view('v_home', $data);
     }
@@ -95,6 +95,16 @@ class Home extends BaseController
     }
 
 
+    // ADDED: Metode untuk menampilkan halaman F.A.Q
+    public function faq()
+    {
+        $data['title'] = "F.A.Q"; // Menetapkan judul halaman untuk breadcrumb atau title tag
+        // Anda bisa menambahkan data lain yang dibutuhkan untuk halaman FAQ di sini
+        // Misalnya, daftar pertanyaan dan jawaban dari database atau array statis
+        return view('v_faq', $data); // Merender view v_faq.php
+    }
+
+    
     /*public function keranjang($id = null)
     {
         $data = [

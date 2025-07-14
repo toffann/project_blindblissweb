@@ -34,8 +34,8 @@ $password = [
                     <div class="card-body">
 
                         <div class="pt-4 pb-2">
-                            <h5 class="card-title text-center pb-0 fs-4">Login to Your Account</h5>
-                            <p class="text-center small">Enter your username & password to login</p>
+                            <h5 class="card-title text-center pb-0 fs-4" style="color: #000;">Masuk ke Akun Anda</h5>
+                            <p class="text-center small" style="color: #000;">Silakan masukkan username dan password Anda</p>
                         </div>
 
                         <?php
@@ -78,9 +78,10 @@ $password = [
                     </div>
                 </div>
 
-                <div class="credits">
-                    Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+                <div class="credits" style="color: white;">
+                     Designed by <a href="https://bootstrapmade.com/" style="color: white;">BootstrapMade</a>
                 </div>
+
 
             </div>
         </div>

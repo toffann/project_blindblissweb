@@ -13,7 +13,6 @@
                 <div class="small mb-1">SKU: BST-<?= $produk_id ?></div>
                 <h1 class="display-5 fw-bolder"><?= $produk_name ?></h1>
                 <div class="fs-5 mb-5">
-                    <span class="text-decoration-line-through">IDR<?= number_format($produk_old_price, 2) ?></span>
                     <span>IDR<?= number_format($produk_price, 2) ?></span>
                 </div>
 

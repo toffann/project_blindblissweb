@@ -312,20 +312,20 @@ h6 {
 }
 
 .breadcrumb a {
-  color: #899bbd;
+  color: #656b77;
   transition: 0.3s;
 }
 
 .breadcrumb a:hover {
-  color: #51678f;
+  color: #2b2d33;
 }
 
 .breadcrumb .breadcrumb-item::before {
-  color: #899bbd;
+  color: #acafb3;
 }
 
 .breadcrumb .active {
-  color: #51678f;
+  color: #717377;
   font-weight: 600;
 }
 
@@ -372,7 +372,7 @@ h6 {
 .logo span {
   font-size: 26px;
   font-weight: 700;
-  color: #012970;
+  color: #000000;
   font-family: "Nunito", sans-serif;
 }
 
@@ -1341,8 +1341,7 @@ h6 {
 
 /* Tombol Dasar */
 .btn {
-  color: #fff;
-  border: none;
+
   font-weight: bold;
   border-radius: 30px;
   padding: 10px 24px;
@@ -1374,7 +1373,45 @@ h6 {
   box-shadow: 0 6px 16px rgba(79, 79, 79, 0.5);
 }
 
+/* Section Untuk membuat tombol quantity terlihat dan berwarna hijau solid */
+.input-group .btn.btn-outline-secondary {
+    color: #fff !important; /* Warna teks putih */
+    background-color: #28a745 !important; /* Warna latar belakang hijau solid (Bootstrap 'success') */
+    border: 1px solid #28a745 !important; /* Border hijau solid */
+    transition: all 0.3s ease !important; /* Transisi untuk efek hover */
+}
+
+.input-group .btn.btn-outline-secondary:hover {
+    color: #fff !important; /* Teks tetap putih saat hover */
+    background-color: #218838 !important; /* Sedikit lebih gelap saat hover */
+    border-color: #1e7e34 !important; /* Border sedikit lebih gelap saat hover */
+}
 
 
 
+/* === Sidebar Icons dan Teks === */
+.sidebar-nav .nav-link {
+  color: #2C2C2C !important;
+  font-weight: 500;
+}
+
+/* Ganti warna ikon (pakai selector ikon atau svg jika pakai library icon) */
+.sidebar-nav .nav-link i {
+  color: #2C2C2C !important;
+}
+
+/* === Hover Sidebar === */
+.sidebar-nav .nav-link:hover {
+  background-color: #f0f0f0;
+  color: #2C2C2C !important;
+  border-left: 4px solid #FF9800; /* Optional: aksen warna cerah */
+  font-weight: 600;
+}
+
+/* Aktif / current menu */
+.sidebar-nav .nav-link.active {
+  background-color: #e0e0e0;
+  color: #2C2C2C !important;
+  border-left: 4px solid #FF9800;
+}
 

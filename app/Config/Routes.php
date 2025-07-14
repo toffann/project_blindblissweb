@@ -42,3 +42,8 @@ $routes->get('faq', 'Home::faq', ['filter' => 'auth']);
 $routes->get('contact', 'Home::contact', ['filter' => 'auth']);
 
 $routes->resource('api', ['controller' => 'apiController']);
+
+
+// faq
+
+$routes->get('faq', 'Home::faq', ['filter' => 'auth']);

@@ -36,6 +36,13 @@
          <span>History</span>
        </a>
      </li><!-- End Profile Nav -->
+     
+     <li class="nav-item">
+      <a class="nav-link <?= uri_string() == 'faq' ? '' : 'collapsed' ?>" href="<?= base_url('faq') ?>">
+        <i class="bi bi-question-circle"></i> <span>F.A.Q</span>
+      </a>
+    </li> <!-- End F.A.Q Nav -->
+
    </ul>
 
  </aside>
